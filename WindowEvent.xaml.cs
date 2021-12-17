@@ -10,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Calendar
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для WindowEvent.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowEvent : Window
     {
-        public MainWindow()
+        public WindowEvent()
         {
             InitializeComponent();
-        }
-
-     
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            WindowEvent windowEvent = new WindowEvent();
-            windowEvent.Show();
         }
     }
 }
