@@ -24,10 +24,12 @@ namespace Calendar
             InitializeComponent();
         }
 
-        private void Autorization(object sender, RoutedEventArgs e)
+        public void submitRegisterButton_Click_1(object sender, RoutedEventArgs e)
         {
-            Windows_Authorization windows_Authorization = new Windows_Authorization();
-            windows_Authorization.Show();
+            Windows_Registration regWin = new Windows_Registration();
+            regWin.Show();
         }
+
+
     }
 }

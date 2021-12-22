@@ -15,10 +15,8 @@ namespace Calendar
     {
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
-            MainWindow myMainWindow = new MainWindow();
             Window1 myAuthorization = new Window1();
             myAuthorization.ShowDialog();
-            myMainWindow.Show();
         }
     }
 }

@@ -17,9 +17,9 @@ namespace Calendar
     /// <summary>
     /// Логика взаимодействия для Windows_Authorization.xaml
     /// </summary>
-    public partial class Windows_Authorization : Window
+    public partial class Windows_Registration : Window
     {
-        public Windows_Authorization()
+        public Windows_Registration()
         {
             InitializeComponent();
         }
