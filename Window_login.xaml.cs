@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 namespace Calendar
 {
     /// <summary>
@@ -30,6 +29,23 @@ namespace Calendar
             regWin.Show();
         }
 
-
+        private void submitAuthoButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.isSigned = true;
+            if (App.isSigned == true)
+            {
+                MainWindow calendarWin = new MainWindow();
+                calendarWin.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Вы ввели неверный логин или пароль",
+                    "Ошибка",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
     }
 }

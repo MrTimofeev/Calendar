@@ -48,7 +48,8 @@
                 Margin="100,0,0,20"
                 Background="black"
                 Foreground="White"
-                FontSize="18"/>
+                FontSize="18"
+                Click="submitAuthoButton_Click"/>
 
         <Button x:Name="submitRegisterButton" 
                 Height="45" Width="120" 

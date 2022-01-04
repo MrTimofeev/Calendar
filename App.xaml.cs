@@ -13,6 +13,9 @@ namespace Calendar
     /// </summary>
     public partial class App : Application
     {
+
+        public static bool isSigned = false;
+
         private void ApplicationStart(object sender, StartupEventArgs e)
         {
             Window1 myAuthorization = new Window1();
