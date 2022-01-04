@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 namespace Calendar
 {
     /// <summary>
@@ -18,6 +21,7 @@ namespace Calendar
     /// </summary>
     public partial class Window1 : Window
     {
+        private SqlConnection sqlConnection = null;
         public Window1()
         {
             InitializeComponent();
@@ -46,6 +50,19 @@ namespace Calendar
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
+
         }
-    }
+
+        private void window_load(object sender, RoutedEventArgs e)
+        {
+            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB_reg"].ConnectionString);
+            sqlConnection.Open();
+            
+            if (sqlConnection.State == ConnectionState.Open)
+            {
+                MessageBox.Show("подключние установленно");
+            }
+
+        }
+    }   
 }
