@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows;
 namespace Calendar
 {
     /// <summary>
@@ -35,34 +23,67 @@ namespace Calendar
 
         private void submitAuthoButton_Click(object sender, RoutedEventArgs e)
         {
-            App.isSigned = true;
-            if (App.isSigned == true)
+            String Login;
+            String Password;
+            bool flag = true;
+            SqlDataReader dataReader = null;
+            //MessageBox.Show(Convert.ToString(userLogin.Text));
+            // MessageBox.Show(Convert.ToString(userPassword.Password));
+            try
             {
-                MainWindow calendarWin = new MainWindow();
-                calendarWin.Show();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show(
-                    "Вы ввели неверный логин или пароль",
-                    "Ошибка",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
+                //SQL запрос Логина и Пароля
+                SqlCommand sqlCommand = new SqlCommand($"SELECT Login, Password FROM UserBd WHERE Login = '{userLogin.Text}' AND Password = '{Convert.ToString(userPassword.Password)}'",
+                    sqlConnection);
 
+                dataReader = sqlCommand.ExecuteReader();
+
+
+                while (dataReader.Read())
+                {
+                    //Достаем Логин и Пароль из БД
+                    Login = Convert.ToString(dataReader[0]);
+                    Password = Convert.ToString(dataReader.GetString(1));
+                    if (Convert.ToString(userLogin.Text) == Login && Convert.ToString(userPassword.Password) == Password)
+                    {
+                        MessageBox.Show("Вы авторизовались!!");
+                        MainWindow calendarWin = new MainWindow();
+                        calendarWin.Show();
+                        Close();
+                        flag = false;
+
+                    }
+                }
+                if (flag == true)
+                {
+                    MessageBox.Show(
+                       "Вы ввели неверный логин или пароль",
+                       "Ошибка",
+                       MessageBoxButton.OK,
+                       MessageBoxImage.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Вывод шибки на случай исключения 
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (dataReader != null && !dataReader.IsClosed)
+                {
+                    //Закрытие dataReader
+                    dataReader.Close();
+                }
+
+            }
         }
 
         private void window_load(object sender, RoutedEventArgs e)
         {
+            //Подключение к Бд
             sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB_reg"].ConnectionString);
             sqlConnection.Open();
-            
-            if (sqlConnection.State == ConnectionState.Open)
-            {
-                MessageBox.Show("подключние установленно");
-            }
-
         }
-    }   
+    }
 }
