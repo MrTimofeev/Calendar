@@ -31,7 +31,7 @@ namespace Calendar
             // MessageBox.Show(Convert.ToString(userPassword.Password));
             try
             {
-                //SQL запрос Логина и Пароля введенного пользователем, для проследующей проверки на сущестоввание 
+                //SQL запрос Логина и Пароля введенного пользователем, для последующей проверки на сущестоввание 
                 SqlCommand sqlCommand = new SqlCommand($"SELECT Login, Password FROM UserBd WHERE Login = '{userLogin.Text}' AND Password = '{Convert.ToString(userPassword.Password)}'",
                     sqlConnection);
 
