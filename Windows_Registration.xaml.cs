@@ -32,26 +32,26 @@ namespace Calendar
 
         private void submitRegistration_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(userName.Text.ToLower());
+            MessageBox.Show(userLogin.Text.ToLower());
             SqlDataReader dataReader = null;
-            String Name;
+            String Login;
             bool flag = true;
             try
             {
-                //SQL запрос NAME введенного пользователем, для последующей проверки на сущестоввание 
-                SqlCommand sqlCommand = new SqlCommand($"SELECT Name FROM UserBd WHERE Name = '{userName.Text.ToLower()}'",
+                //SQL запрос Login введенного пользователем, для последующей проверки на сущестоввание 
+                SqlCommand sqlCommand = new SqlCommand($"SELECT Login FROM UserBd WHERE Login = '{userLogin.Text.ToLower()}'",
                     sqlConnection);
 
                 dataReader = sqlCommand.ExecuteReader();
 
-                
+
                 while (dataReader.Read())
                 {
-                    //Достаем имя пользователя для проверки на существвание
-                    Name = Convert.ToString(dataReader.GetString(0));
-                    if (userName.Text == Name)
+                    //Достаем логин пользователя для проверки на существвание
+                    Login = Convert.ToString(dataReader.GetString(0));
+                    if (userLogin.Text == Login)
                     {
-                        MessageBox.Show("Такое имя уже занято!!");
+                        MessageBox.Show("Аккаунт с таким логином уже зарегестрирован!!!");
                         flag = false;
                     }
 
@@ -72,7 +72,7 @@ namespace Calendar
                 }
 
 
-                //Проверка заполенение полей при регистрации
+                //Проверка заполенения полей при регистрации
                 if (userName.Text == "")
                 {
                     MessageBox.Show("Вы не ввели данные в поле NAME");
@@ -84,6 +84,14 @@ namespace Calendar
                 else if (Convert.ToString(userPassword.Password) == "")
                 {
                     MessageBox.Show("Вы не ввели данные в поле PASSWORD");
+                }
+                else if (Convert.ToString(userLogin.Text).Length < 5)
+                {
+                    MessageBox.Show("Длинна логина должна превышать 5 символов!!!");
+                }
+                else if (Convert.ToString(userPassword.Password).Length < 6)
+                {
+                    MessageBox.Show("Длинна пароля должна превышать 6 символов!!!");
                 }
                 else if (flag == true)
                 {
