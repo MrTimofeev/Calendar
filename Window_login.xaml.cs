@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Windows;
+using Calendar.Models;
 namespace Calendar
 {
     /// <summary>
@@ -9,81 +8,46 @@ namespace Calendar
     /// </summary>
     public partial class Window1 : Window
     {
-        private SqlConnection sqlConnection = null;
+        private readonly UserContext db;
         public Window1()
         {
             InitializeComponent();
+            db = new UserContext();//подключение к БД
         }
 
-        public void submitRegisterButton_Click_1(object sender, RoutedEventArgs e)
+        public void SubmitRegisterButton_Click_1(object sender, RoutedEventArgs e)
         {
             Windows_Registration regWin = new Windows_Registration();
             regWin.Show();
         }
 
-        private void submitAuthoButton_Click(object sender, RoutedEventArgs e)
+        private void SubmitAuthoButton_Click(object sender, RoutedEventArgs e)
         {
-            String Login;
-            String Password;
             bool flag = true;
-            SqlDataReader dataReader = null;
-            //MessageBox.Show(Convert.ToString(userLogin.Text));
-            // MessageBox.Show(Convert.ToString(userPassword.Password));
-            try
+            var user_Name = db.User;
+            foreach (User us in user_Name) // цикл который проходит по всем логинам занесенным в базу
             {
-                //SQL запрос Логина и Пароля введенного пользователем, для последующей проверки на сущестоввание 
-                SqlCommand sqlCommand = new SqlCommand($"SELECT Login, Password FROM UserBd WHERE Login = '{userLogin.Text}' AND Password = '{Convert.ToString(userPassword.Password)}'",
-                    sqlConnection);
+                string Login = us.Login;// Достаем логин
+                string Password = us.Password;// Достаем пароль 
 
-                dataReader = sqlCommand.ExecuteReader();
-
-
-                while (dataReader.Read())
+                //проверяем на существование логин и пароль
+                if (Login == Convert.ToString(userLogin.Text) && Password == Convert.ToString(userPassword.Password))
                 {
-                    //Достаем Логин и Пароль из БД
-                    Login = Convert.ToString(dataReader[0]);
-                    Password = Convert.ToString(dataReader.GetString(1));
-                    if (Convert.ToString(userLogin.Text) == Login && Convert.ToString(userPassword.Password) == Password)
-                    {
-                        MessageBox.Show("Вы авторизовались!!");
-                        MainWindow calendarWin = new MainWindow();
-                        calendarWin.Show();
-                        Close();
-                        flag = false;
-
-                    }
+                    MessageBox.Show("Вы авторизовались");
+                    MainWindow calendarWin = new MainWindow();
+                    calendarWin.Show();
+                    Close();
+                    flag = false;
                 }
-                if (flag == true)
-                {
-                    MessageBox.Show(
-                       "Вы ввели неверный логин или пароль",
-                       "Ошибка",
-                       MessageBoxButton.OK,
-                       MessageBoxImage.Error);
-                }
-
             }
-            catch (Exception ex)
+            if (flag == true)
             {
-                //Вывод шибки на случай исключения 
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                   "Вы ввели неверный логин или пароль",
+                   "Ошибка",
+                   MessageBoxButton.OK,
+                   MessageBoxImage.Error);
             }
-            finally
-            {
-                if (dataReader != null && !dataReader.IsClosed)
-                {
-                    //Закрытие dataReader
-                    dataReader.Close();
-                }
-
-            }
-        }
-
-        private void window_load(object sender, RoutedEventArgs e)
-        {
-            //Подключение к Бд
-            sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["DB_reg"].ConnectionString);
-            sqlConnection.Open();
         }
     }
 }
