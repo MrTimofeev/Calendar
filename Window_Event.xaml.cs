@@ -23,5 +23,10 @@ namespace Calendar
         {
             InitializeComponent();
         }
+
+        private void exit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
