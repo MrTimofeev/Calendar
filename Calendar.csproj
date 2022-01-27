@@ -84,6 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Window_login.xaml.cs">
@@ -95,6 +98,10 @@
     <Compile Include="Windows_Registration.xaml.cs">
       <DependentUpon>Windows_Registration.xaml</DependentUpon>
     </Compile>
+    <Page Include="Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window_calendarCalendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,0 +1,128 @@
+﻿<Window x:Class="Calendar.Help"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        mc:Ignorable="d"
+        Title="Help" Height="800" Width="600"
+        WindowStyle="None">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF262265"/>
+                <GradientStop Color="#FF16225B"/>
+                <GradientStop Color="#FF090939" Offset="0.968"/>
+                <GradientStop Color="#FF091333" Offset="0.479"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="267*"/>
+        </Grid.RowDefinitions>
+
+        <!--Закрытие и сварачивание-->
+        <Grid x:Name="top_tool" Background="Transparent">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image x:Name="tire" Width="20" Height="18" VerticalAlignment="Top" 
+                       Margin="1,1,5,1" MouseDown="tire_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}" >
+                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire1.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=tire}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire2.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.Effect>
+                        <BlurEffect Radius="1" />
+                    </Image.Effect>
+                </Image>
+
+                <Image x:Name="exit" Width="20" Height="18" Margin="1,1,4,1" MouseDown="exit_MouseDown_1" 
+                       VerticalAlignment="Top">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}" >
+                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х1.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=exit}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х2.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.Effect>
+                        <BlurEffect Radius="1" />
+                    </Image.Effect>
+                </Image>
+            </StackPanel>
+        </Grid>
+
+        <!--Данный Label отвечает за главное лого-->
+        <Label Grid.Row="0" Foreground="White" 
+               Content="Your Helpchik" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+               FontSize="25" Margin="100,46,100,46">
+            <Label.Style>
+                <Style TargetType="{x:Type Label}">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="FontSize" To="29"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="FontSize" To="25"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <TextBlock Grid.Row="1" Foreground="#FFB5B3B3" FontSize="18">
+            Здравствуйте! Konichiba! Hello! Вас приветствует группа молодых <LineBreak/>
+            разработчиков, которая старалась и делала это приложение. <LineBreak/>
+            Будем рады, если вы оцените. <LineBreak/>
+            <LineBreak/>
+            <Bold>Название:</Bold><LineBreak/>
+            Вводите своё название события/мероприятия.
+            <LineBreak/>
+            <Bold>Время начала/конца:</Bold><LineBreak/>
+            Выберите время начала и конца вашего события/мероприятия.
+            <LineBreak/>
+            <Bold>Дата начала/конца:</Bold><LineBreak/>
+            Выберите дату начала и конца вашего события/мероприятия.
+            <LineBreak/>
+            <Bold>Событие:</Bold><LineBreak/>
+            Выберите один из вариантов описывающий ваше <LineBreak/> событие/мероприятие.<LineBreak/>
+            <Bold>Описание:</Bold><LineBreak/>
+            Введите общее описание дел, аспектов или формальностей <LineBreak/> события/мероприятия.
+            <LineBreak/>
+            <Bold>Сохранить:</Bold><LineBreak/>
+            Кнопка сохраняет внесенные вами данные. 
+            <LineBreak/>
+            <LineBreak/>
+            По всем вопросам пишите нам на почту: <Hyperlink> rta.inc.12@gmail.com</Hyperlink>.<LineBreak/> 
+            Также можете поддержать проект без SMS и регистрации.<LineBreak/> 
+            Ваши деньги никуда не убегут, это мы вам гарантируем! Проект <LineBreak/> 
+            мы планируем в дальнейшем развивать, так что ждите новостей! 
+            <LineBreak/>
+            На чай и улитку: 2202 2019 3755 0891
+
+        </TextBlock>
+
+    </Grid>
+</Window>

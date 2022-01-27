@@ -8,9 +8,10 @@
         Height="800" Width="600" WindowStartupLocation="CenterScreen"
         WindowStyle="None">
     <Window.Resources>
+        <!--Данный Style отвечает за книпку событий-->
         <Style x:Key="ComboboxButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
-            <Setter Property="Background" Value="#FF193E84"></Setter>
+            <Setter Property="Background" Value="#FF11141C"></Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -40,14 +41,40 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--Данный Style отвечает за дизайн кнопок по выбору событий -->
+        <Style x:Key="bts" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"></Setter>
+            <Setter Property="Background" Value="#FF152056"></Setter>
+            <Setter Property="Height" Value="33"/>
+            <Setter Property="Foreground" Value="#FF929496"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="25,0,0,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF323945" />
+                                <Setter Property="Foreground" Value="#FFC3C4CB" />
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF262265"/>
-                <GradientStop Color="#FF1B2558"/>
-                <GradientStop Color="#FF0C0C4D" Offset="0.968"/>
-                <GradientStop Color="#FF0D1739" Offset="0.479"/>
+                <GradientStop Color="#FF16225B"/>
+                <GradientStop Color="#FF090939" Offset="0.968"/>
+                <GradientStop Color="#FF091333" Offset="0.479"/>
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -71,14 +98,14 @@
         <Grid x:Name="top_tool" Background="Transparent" Grid.Column="4">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Image x:Name="tire" Width="20" Height="18" 
-                       Margin="1,1,5,1">
+                       Margin="1,1,5,1" MouseDown="tire_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/tire1.png"/>
+                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=tire}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/tire2.png"/>
+                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -88,14 +115,14 @@
                     </Image.Effect>
                 </Image>
 
-                <Image x:Name="exit" Width="20" Height="18" Margin="1,1,7,1" >
+                <Image x:Name="exit" Width="20" Height="18" Margin="1,1,7,1" MouseDown="exit_MouseDown_1" >
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/х1.png"/>
+                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=exit}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/х2.png"/>
+                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -107,12 +134,13 @@
             </StackPanel>
         </Grid>
 
+        <!--Блок с названием-->
         <Label x:Name="nazv" Grid.Row="1" Grid.Column="0" 
                Content="Название" Foreground="White" FontSize="14" 
                Margin="10,1,20,30" />
         <TextBox x:Name="txt_nazv" Grid.Row="1" Grid.Column="1" 
                  Grid.ColumnSpan="3" Width="300" 
-                 Background="#FF11141C" Foreground="White" FontSize="14"
+                 Background="#FF11141C" Foreground="White" FontSize="16"
                  HorizontalAlignment="Left" Margin="0,10,0,44">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}">
@@ -139,10 +167,27 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="Введите название вашего события" 
+                   Grid.Column="1" Margin="0,0,0,32" VerticalAlignment="Center" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="1" Grid.ColumnSpan="3">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt_nazv}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <!--Конец блока с названием-->
 
-        <TextBox x:Name="txt_nach" Grid.Column="1" Grid.Row="2" 
-                 Width="90" HorizontalAlignment="Left"
-                 Background="#FF11141C" Foreground="White" FontSize="14" Margin="0,13,0,13">
+
+        <!--Время начала/конца-->
+        <TextBox x:Name="txt_nach2" Grid.Column="1" Grid.Row="2" 
+                 Width="25" HorizontalAlignment="Left" MaxLength="2"
+                 Background="#FF11141C" Foreground="White" FontSize="16" Margin="35,13,0,13">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
@@ -150,7 +195,7 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="130"/>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="29"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
@@ -159,7 +204,7 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="90"/>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="25"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
@@ -168,11 +213,47 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="00" 
+                   Grid.Column="1" Margin="37,0,80,0" VerticalAlignment="Center" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="2">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt_nach2}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
-        <TextBox x:Name="txt_kon" Grid.Row="3" Grid.Column="1" 
-                 Grid.ColumnSpan="1" Width="90"
-                 HorizontalAlignment="Left" 
-                 Background="#FF11141C" Foreground="White" FontSize="14" Margin="0,16,0,15">
+        <TextBox x:Name="txt_nach1" Grid.Column="1" Grid.Row="2" 
+                 Width="25" HorizontalAlignment="Left" MaxLength="2"
+                 Background="#FF11141C" Foreground="White" FontSize="16" Margin="0,13,0,13"/>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="13" 
+                   Grid.Column="1" Margin="0,0,113,0" VerticalAlignment="Center" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="2">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt_nach1}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Label x:Name="lb1" Grid.Column="1" 
+               Margin="22,2,98,11" Content=":" Foreground="White" 
+               FontSize="25" Background="Transparent" Grid.Row="2" />
+
+        <TextBox x:Name="txt_kon2" Grid.Row="3" Grid.Column="1" 
+                 Grid.ColumnSpan="1" Width="25"
+                 HorizontalAlignment="Left" MaxLength="2"
+                 Background="#FF11141C" Foreground="White" FontSize="16" Margin="35,13,0,13">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}">
                     <Style.Triggers>
@@ -180,7 +261,7 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="130"/>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="29"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
@@ -189,7 +270,7 @@
                             <EventTrigger.Actions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="90"/>
+                                        <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetProperty="Width" To="25"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger.Actions>
@@ -198,9 +279,42 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBlock IsHitTestVisible="False" FontSize="18" Text="13 : 10" 
-                   Grid.Column="1" Margin="0,0,47,0" VerticalAlignment="Center" 
-                   Foreground="#FF504B4B" Height="24" Grid.Row="2" />
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="10" 
+                   Grid.Column="1" Margin="37,0,80,0" VerticalAlignment="Center" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="3">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt_kon2}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <TextBox x:Name="txt_kon1" Grid.Row="3" Grid.Column="1" 
+                 Grid.ColumnSpan="1" Width="25"
+                 HorizontalAlignment="Left" MaxLength="2"
+                 Background="#FF11141C" Foreground="White" FontSize="16" Margin="0,13,0,13"/>
+        <TextBlock IsHitTestVisible="False" FontSize="18" Text="13" 
+                   Grid.Column="1" Margin="0,0,113,0" VerticalAlignment="Center" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="3">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt_kon1}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Label x:Name="lb2" Grid.Column="1" 
+               Margin="22,3,98,9" Content=":" Foreground="White" 
+               FontSize="25" Background="Transparent" Grid.Row="3" />
 
         <Label x:Name="nach" Grid.Column="0" 
                Margin="1,10,0,13" Content="Время начала" Foreground="White" 
@@ -208,14 +322,43 @@
         <Label x:Name="kon" Grid.Row="3" Grid.Column="0" Margin="1,16,0,0" 
                Content="Время конца" Foreground="White" FontSize="14" 
                Background="Transparent"/>
+        <!--Конец блока начала/конца-->
 
-        <Label x:Name="opis" Grid.Row="4" Grid.Column="0" Content="Описание" 
-               FontSize="14" Foreground="White" Margin="1,135,0,0" />
+        <!--Начало блока с датой-->
+        <DatePicker Name="dt_1" SelectedDate="2000-12-31" Grid.Column="3" Grid.Row="2"
+                    Margin="0,15,1,15">
+        </DatePicker>
+        <Label x:Name="dt_l" Grid.Column="2" 
+               Margin="1,10,0,13" Content="Дата события" Foreground="White" 
+               FontSize="14" Background="Transparent" Grid.Row="2"/>
+        <!--Конец блока с датой-->
+        
+        <!-- Общее описание-->
+        <Label x:Name="opis" Grid.Row="5" Grid.Column="0" Content="Описание" 
+               FontSize="14" Foreground="White" Margin="1,10,0,0" 
+               VerticalAlignment="Top"/>
         <TextBox x:Name="txt"  Grid.Row="5" Grid.Column="0" 
-                 Grid.ColumnSpan="5" Margin="5,5,5,5" Background="#FF11141C" 
+                 Grid.ColumnSpan="5" Margin="5,40,5,50" Background="#FF11141C" 
                  Foreground="White" FontWeight="Normal" 
-                 FontStyle="Normal" FontSize="14"/>
+                 FontStyle="Normal" FontSize="16" AcceptsReturn="True"
+                 TextWrapping="Wrap" />
+        <TextBlock IsHitTestVisible="False" FontSize="16" Text="Введите общую информацию" 
+                   Grid.Column="0" Margin="10,40,35,0" VerticalAlignment="Top" 
+                   Foreground="#FF504B4B" Height="24" Grid.Row="5" Grid.ColumnSpan="3">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=txt}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <!--Конец блока общего описания-->
 
+        <!--Кнопка для сохранения записи-->
         <Button x:Name="save" Grid.Row="6" Grid.Column="4" 
                 Background="#FF193E84" Width="80" Height="35"
                 Foreground="White" FontFamily="Segoe UI" Cursor="Hand" 
@@ -264,8 +407,7 @@
             </Button.Style>
         </Button>
 
-
-        <!--Данный Border отвечает окно с событиями-->
+        <!--Данный Border отвечает саму кнопку сибытий, а Grid за окно с событиями-->
         <Border x:Name="CbmBorder" Grid.Row="4" Height="24" Width="80" Margin="5,5,0,0"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 CornerRadius="2" BorderThickness="1" Background="#FF11141C">
@@ -295,7 +437,8 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <Button Style="{StaticResource ComboboxButton}">
+
+            <Button Style="{StaticResource ComboboxButton}" Click="Button_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="21" Width="38" Margin="5,0,0,0">
                         <Image.Style>
@@ -334,8 +477,53 @@
                 </StackPanel>
             </Button>
         </Border>
+        <Grid Name="G_Sob" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="2" Width="220" Height="150"
+              HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,30,0" Visibility="Hidden">
+            <Polygon Fill="Black" StrokeThickness="3" Stroke="Black"
+                     Points="0,9,
+                     0,145,
+                     190,145
+                     190,9
+                     80,9
+                     60,0
+                     40,9"/>
+            <Polygon Fill="#FF101942" StrokeThickness="1" Stroke="MidnightBlue"
+                     Points="0,9,
+                     0,145,
+                     190,145
+                     190,9
+                     80,9
+                     60,0
+                     40,9"/>
+            <Grid Height="135" Width="190" HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" Margin="0,10,0,0" >
+                <StackPanel Orientation="Vertical">
+                    <Button Style="{StaticResource bts}">
+                        <TextBlock Text="День рождение!!"/>
+                    </Button>
+                    <Button Style="{StaticResource bts}">
+                        <TextBlock Text="Важное событие"/>
+                    </Button>
+                    <Button Style="{StaticResource bts}">
+                        <TextBlock Text="Памятка"/>
+                    </Button>
+                    <Polygon Fill="White" Points="0,3,190,3" StrokeThickness="1" 
+                             Stroke="#FF40454E"/>
+                    <Button Style="{StaticResource bts}" Margin="0,1,0,0" Click="Button_Click_1">
+                        <TextBlock Text="Помощь"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <TextBlock Text="Событие" Foreground="White" FontSize="14"
+                   Grid.Row="4" Grid.ColumnSpan="2" Margin="6,7,10,140" HorizontalAlignment="Center"/>
 
-
-
+        <StackPanel x:Name="SP_Pos" Grid.Column="0" Grid.Row="5" 
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    Grid.ColumnSpan="2">
+            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Присутсвовал" />
+            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Не присутствовал"/>
+        </StackPanel>
+        
     </Grid>
 </Window>
