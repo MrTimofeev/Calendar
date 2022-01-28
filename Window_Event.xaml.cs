@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calendar.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,29 @@ namespace Calendar
     /// </summary>
     public partial class WindowEvent : Window
     {
+        private readonly UserContext db;
         public WindowEvent()
         {
             InitializeComponent();
+            db = new UserContext();//подключение к БД
         }
 
-        private void exit_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Save_event(object sender, RoutedEventArgs e)
         {
+            User_event User_event = new User_event // Добавление записи события 
+            {
+                Name_event = Convert.ToString(txt_nazv.Text), // Добаление Имени события 
+                Event_Description = Convert.ToString(txt.Text), // Добовление Описания 
+                // Event_date = // Добовление  даты 
+                // HasCome = // Добавления Пришел/Не пришел
+                User_Id = Window1.UserId // Добавлние ID для связи 2 таблиц 
+            };
+
+            db.User_event.Add(User_event); // Добавдение сущности User_event 
+            db.SaveChanges(); //Сохраниени сущности в БД
+                              
+            MessageBox.Show("Заметка события создана");// Вывод сообщения и закрытие окна 
+            Close();
 
         }
 

@@ -8,6 +8,7 @@ namespace Calendar
     /// </summary>
     public partial class Window1 : Window
     {
+        public static int UserId;
         private readonly UserContext db;
         public Window1()
         {
@@ -21,7 +22,7 @@ namespace Calendar
             regWin.Show();
         }
 
-        private void SubmitAuthoButton_Click(object sender, RoutedEventArgs e)
+        public void SubmitAuthoButton_Click(object sender, RoutedEventArgs e)
         {
             bool flag = true;
             var user_Name = db.User;
@@ -29,6 +30,7 @@ namespace Calendar
             {
                 string Login = us.Login;// Достаем логин
                 string Password = us.Password;// Достаем пароль 
+                UserId = us.UserId;// Достаем ID для создания связи 
 
                 //проверяем на существование логин и пароль
                 if (Login == Convert.ToString(userLogin.Text) && Password == Convert.ToString(userPassword.Password))
@@ -49,5 +51,6 @@ namespace Calendar
                    MessageBoxImage.Error);
             }
         }
+     
     }
 }

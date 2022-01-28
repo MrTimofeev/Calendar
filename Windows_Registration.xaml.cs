@@ -7,6 +7,8 @@ namespace Calendar
     /// <summary>
     /// Логика взаимодействия для Windows_Authorization.xaml
     /// </summary>
+    /// 
+    
     public partial class Windows_Registration : Window
     {
         private readonly UserContext db;
@@ -64,7 +66,7 @@ namespace Calendar
 
                 db.User.Add(user);// Добаление сущности User
                 db.SaveChanges();// сохранение cущности в БД
-                
+
                 // Вывод сообщения и закрытие окна 
                 MessageBox.Show("Вы успешно зарегистрировались!!");
                 Close();
