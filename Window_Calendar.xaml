@@ -488,9 +488,47 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Viewbox Stretch="Uniform">
-            <Calendar x:Name="Calendar" CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox  Grid.Row="0"
+                  Grid.RowSpan="2"
+                  Grid.Column="2"
+                  Grid.ColumnSpan="3"
+                  Stretch="Fill">
+            <Calendar
+                  VerticalAlignment="Center"
+            x:Name="Calendar_Win"  CalendarItemStyle="{DynamicResource CalendarCalendarItemStyle1}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyle1}" Style="{DynamicResource CalendarStyle1}" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+
         </Viewbox>
-        
+        <Button Grid.Row="2"
+                Grid.Column="2"
+                x:Name="excel1"
+                MaxHeight="50"
+                MaxWidth="75"
+                Content="Экспорт"
+                Click="excel1_Click"/>
+
+        <Button Grid.Row="2"
+                Grid.Column="4"
+                x:Name="excel2" 
+                MaxHeight="50"
+                MaxWidth="75"
+                Click="excel2_Click"
+                Content="Экспорт 2"/>
     </Grid>
 </Window>

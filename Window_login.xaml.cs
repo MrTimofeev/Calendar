@@ -19,7 +19,7 @@ namespace Calendar
         public void SubmitRegisterButton_Click_1(object sender, RoutedEventArgs e)
         {
             Windows_Registration regWin = new Windows_Registration();
-            regWin.Show();
+            regWin.ShowDialog();
         }
 
         public void SubmitAuthoButton_Click(object sender, RoutedEventArgs e)
