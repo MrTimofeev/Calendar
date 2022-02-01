@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Calendar;
 
 namespace Calendar
 {
@@ -20,11 +21,15 @@ namespace Calendar
     /// </summary>
     public partial class WindowEvent : Window
     {
+       
         private readonly UserContext db;
         public WindowEvent()
         {
+            
             InitializeComponent();
             db = new UserContext();//подключение к БД
+            dt_1.Text = MainWindow.data_Now;
+
         }
 
         private void Save_event(object sender, RoutedEventArgs e)

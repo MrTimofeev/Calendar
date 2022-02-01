@@ -101,11 +101,11 @@
                        Margin="1,1,5,1" MouseDown="tire_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/tire1.png"/>
+                            <Setter Property="Source" Value="pack://application:,,,/Source/tire1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=tire}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/tire2.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Source/tire2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -118,11 +118,11 @@
                 <Image x:Name="exit" Width="20" Height="18" Margin="1,1,7,1" MouseDown="exit_MouseDown_1" >
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/х1.png"/>
+                            <Setter Property="Source" Value="pack://application:,,,/Source/х1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=exit}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source/х2.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Source/х2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -325,9 +325,9 @@
         <!--Конец блока начала/конца-->
 
         <!--Начало блока с датой-->
-        <DatePicker Name="dt_1" SelectedDate="2000-12-31" Grid.Column="3" Grid.Row="2"
+        <TextBlock Name="dt_1"  Grid.Column="3" Grid.Row="2"
                     Margin="0,15,1,15">
-        </DatePicker>
+        </TextBlock>
         <Label x:Name="dt_l" Grid.Column="2" 
                Margin="1,10,0,13" Content="Дата события" Foreground="White" 
                FontSize="14" Background="Transparent" Grid.Row="2"/>
@@ -443,15 +443,15 @@
                     <Image Height="21" Width="38" Margin="5,0,0,0">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
-                                <Setter Property="Source" Value="D:\C# progect\Calendar\Source\Событие1.png"/>
+                                <Setter Property="Source" Value="pack://application:,,,/Source\Событие1.png"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=CbmBorder}" Value="True">
-                                        <Setter Property="Source" Value="D:\C# progect\Calendar\Source\Событие2.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Source\Событие2.png"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,
                                         AncestorType={x:Type Button}, AncestorLevel=1},
                                         Path=IsPressed}" Value="True">
-                                        <Setter Property="Source" Value="D:\C# progect\Calendar\Source\Событие1.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Source\Событие1.png"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -460,15 +460,15 @@
                     <Image Height="20" Width="20" Margin="5,0,0,0">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
-                                <Setter Property="Source" Value="D:\C# progect\Calendar\Source\str1.png"/>
+                                <Setter Property="Source" Value="pack://application:,,,/Source\str1.png"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=CbmBorder}" Value="True">
-                                        <Setter Property="Source" Value="D:\C# progect\Calendar\Source\str.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Source\str.png"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,
                                         AncestorType={x:Type Button}, AncestorLevel=1},
                                         Path=IsPressed}" Value="True">
-                                        <Setter Property="Source" Value="D:\C# progect\Calendar\Source\str1.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Source\str1.png"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>

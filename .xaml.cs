@@ -20,14 +20,24 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public static string data_Now;
         public MainWindow()
         {
             InitializeComponent();
         }
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            data_Now = Calendar.SelectedDate.Value.Date.ToShortDateString();
             WindowEvent windowEvent = new WindowEvent();
             windowEvent.Show();
         }
+
+        //private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+            
+           
+        //}
     }
 }

@@ -28,11 +28,11 @@
                        Margin="1,1,5,1" MouseDown="tire_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire1.png"/>
+                            <Setter Property="Source" Value="pack://application:,,,/Source\tire1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=tire}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\tire2.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Source\tire2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -46,11 +46,11 @@
                        VerticalAlignment="Top">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}" >
-                            <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х1.png"/>
+                            <Setter Property="Source" Value="pack://application:,,,/Source\х1.png"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=exit}"
                                              Value="True">
-                                    <Setter Property="Source" Value="C:\Users\Аскер\Documents\Visual Studio Project\Calendar\Source\х2.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Source\х2.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
