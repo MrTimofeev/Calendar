@@ -522,13 +522,5 @@
                 MaxWidth="75"
                 Content="Экспорт"
                 Click="excel1_Click"/>
-
-        <Button Grid.Row="2"
-                Grid.Column="4"
-                x:Name="excel2" 
-                MaxHeight="50"
-                MaxWidth="75"
-                Click="excel2_Click"
-                Content="Экспорт 2"/>
     </Grid>
 </Window>

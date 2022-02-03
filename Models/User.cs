@@ -22,8 +22,8 @@ namespace Calendar.Models
         public int User_Id { get; set; }
         public string Name_event { get; set; }
         public string Event_Description { get; set; }
-        public bool HasCome { get; set; }
-        //public DateTime Event_date { get; set; } 
+        public string HasCome { get; set; }
+        public string Event_date { get; set; } 
 
     }
 }

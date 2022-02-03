@@ -521,8 +521,8 @@
         <StackPanel x:Name="SP_Pos" Grid.Column="0" Grid.Row="5" 
                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
                     Grid.ColumnSpan="2">
-            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Присутсвовал" />
-            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Не присутствовал"/>
+            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Присутсвовал" Checked="RadioButton_Checked"/>
+            <RadioButton GroupName="Yes" Height="20" Foreground="White" Content="Не присутствовал" Checked="RadioButton_Checked"/>
         </StackPanel>
         
     </Grid>

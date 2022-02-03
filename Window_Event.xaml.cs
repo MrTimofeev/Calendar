@@ -21,7 +21,7 @@ namespace Calendar
     /// </summary>
     public partial class WindowEvent : Window
     {
-       
+        private string rb_ch;
         private readonly UserContext db;
         public WindowEvent()
         {
@@ -38,8 +38,8 @@ namespace Calendar
             {
                 Name_event = Convert.ToString(txt_nazv.Text), // Добаление Имени события 
                 Event_Description = Convert.ToString(txt.Text), // Добовление Описания 
-                // Event_date = // Добовление  даты 
-                // HasCome = // Добавления Пришел/Не пришел
+                Event_date = Convert.ToString(dt_1.Text),// Добовление  даты 
+                HasCome = rb_ch,// Добавления Пришел/Не пришел
                 User_Id = Window1.UserId // Добавлние ID для связи 2 таблиц 
             };
 
@@ -78,6 +78,12 @@ namespace Calendar
         {
             Help regWin = new Help();
             regWin.Show();
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton pressed = (RadioButton)sender;
+            rb_ch = pressed.Content.ToString();
         }
     }
 }
